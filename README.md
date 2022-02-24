@@ -1,2 +1,1 @@
-# training
-Artem Kozlovski
+# Artem Kozlovski
