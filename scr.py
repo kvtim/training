@@ -1,2 +1,2 @@
-for nums2 in range(1,20):
-    print('row:'+str(nums2))
+for new_nums in range(1,10):
+    print('row:'+str(new_nums))
