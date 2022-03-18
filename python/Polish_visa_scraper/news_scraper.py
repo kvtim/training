@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 class NewsScraper(BaseScraper):
 
     def __init__(self):
-        super().__init__('https://visa.vfsglobal.com/blr/ru/pol/')
+        super().__init__('https://visa.vfsglobal.com/blr/en/pol/')
 
+    @BaseScraper.create_driver
     def parse_html(self):
         all_news = self.driver.find_element(by=By.CLASS_NAME, value='page-component').\
             find_elements(By.CLASS_NAME, value='news-li')
@@ -21,5 +22,4 @@ class NewsScraper(BaseScraper):
                 }
             )
 
-        self.driver.quit()
         return list_news

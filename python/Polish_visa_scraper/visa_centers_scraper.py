@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 class VisaCentersScraper(BaseScraper):
 
     def __init__(self):
-        super().__init__('https://visa.vfsglobal.com/blr/ru/pol/attend-centre/')
+        super().__init__('https://visa.vfsglobal.com/blr/en/pol/attend-centre/')
 
+    @BaseScraper.create_driver
     def parse_html(self):
         info = self.driver.find_element(by=By.CLASS_NAME, value='v-data-table__wrapper') \
             .find_elements(by=By.TAG_NAME, value='td')
@@ -30,7 +31,6 @@ class VisaCentersScraper(BaseScraper):
                               'working hours': working_hours[i],
                               'address': address})
 
-        self.driver.quit()
         return list_info
 
     @staticmethod

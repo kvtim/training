@@ -5,10 +5,11 @@ from selenium import webdriver
 class BaseScraper:
 
     def __init__(self, url):
-        self.driver = self.__get_driver(url)
+        self.url = url
+        self.driver = None
 
     @staticmethod
-    def __get_driver(url):
+    def get_driver(url):
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         driver = webdriver.Chrome(options=options)
@@ -16,6 +17,16 @@ class BaseScraper:
         driver.get(url)
 
         return driver
+
+    @staticmethod
+    def create_driver(parse_method):
+        def create(self):
+            self.driver = self.get_driver(self.url)
+            info = parse_method(self)
+            self.driver.quit()
+            return info
+
+        return create
 
     @abstractmethod
     def parse_html(self):
