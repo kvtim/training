@@ -1,0 +1,14 @@
+{% extends 'base_weather.html' %}
+
+{% block weather %}
+<div class="card border-3 p-3 shadow-sm text-center">
+    <h5>Date: {{ date }}</h5>
+    <h5 class="lead text-muted">Day: {{ day }} °C</h5>
+    <h5 class="lead text-muted">Night: {{ night }} °C</h5>
+    <h5 class="lead text-muted">{{ descr }}</h5>
+    <h5 class="lead text-muted">Min temp: {{ min_temp }} °C</h5>
+    <h5 class="lead text-muted">Max temp: {{ max_temp }} °C</h5>
+    <h5 class="lead text-muted">Wind speed: {{ wind_speed }} m/s</h5>
+    <h5 class="lead text-muted">Humidity: {{ humidity }} %</h5>
+</div>
+{% endblock weather %}

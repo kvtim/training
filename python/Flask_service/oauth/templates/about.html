@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Hello, {{ name }}! You're logged in!</p>
+<p>Email: {{ email }}</p>
+<div>
+    <p>Google Profile Picture:</p>
+    <img src="{{ picture }}" alt="Google profile pic"/>
+</div>
+<p>
+    <a class="button" href="/index">Main page</a>
+</p>
+<p>
+    <a class="button" href="/logout">Logout</a>
+</p>
+{% endblock content %}

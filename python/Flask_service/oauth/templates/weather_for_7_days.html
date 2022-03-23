@@ -1,0 +1,19 @@
+{% extends 'base_weather.html' %}
+
+{% block weather %}
+{% for i in range(len) %}
+<div class="card border-3 p-3 shadow-sm text-center">
+    {% if i == 0 %}
+    <h5>Today</h5>
+    {% elif i == 1 %}
+    <h5>Tomorrow</h5>
+    {% else %}
+    <h5>{{ date[i] }}</h5>
+    {% endif %}
+    <h5 class="lead text-muted">Day: {{ days[i] }} °C</h5>
+    <h5 class="lead text-muted">Night: {{ nights[i] }} °C</h5>
+    <h5 class="lead text-muted">{{ descr[i] }}</h5>
+    <a href="{{ url_for('one_day_weather', city=city, date=unix_date[i]) }}">More</a>
+</div>
+{% endfor %}
+{% endblock weather %}
