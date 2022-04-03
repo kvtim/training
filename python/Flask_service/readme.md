@@ -1,6 +1,6 @@
 # Flask service
-- [About service](#About this service)
-- [How to run](#How to run)
+- [About service](## About this service)
+- [How to run](## How to run)
 ___
 ## About this service
 - #### /index -Start page with links to other endpoint services
