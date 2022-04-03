@@ -51,7 +51,7 @@ Build docker image:
 docker build -t flask_service .
 ```
 ![img_9.png](resources/img_9.png)
-![img.png](img.png)
+![img.png](resources/img.png)
 Run container based on this image:
 ```
 docker run -it -d -p 5000:5000 --env-file ./config/.env_list --name service --rm flask_service  
