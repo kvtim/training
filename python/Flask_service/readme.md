@@ -6,27 +6,20 @@ ___
 - #### /index -Start page with links to other endpoint services
     ![index.png](resources/index.png)
     ![img.png](resources/index2.png)
-- ---
 - #### /login - OAuth в Google
     ![img.png](resources/login.png)
-- ---
 - #### /get_weather - city input
     ![img.png](resources/get_weather.png)
-- ---
 - #### /list/city - Weather in city for the next 7 days
     ![img.png](resources/list1.png)
     ![img.png](resources/list2.png)
     ![img.png](resources/list3.png)
-- ---
 - #### /city/date - Weather in city for a specific date
     ![img.png](resources/city.png)
-- ---
 - #### /about - Information about you based on information from login
     ![img.png](resources/about.png)
-- ---
 - #### /useragent - Getting information about what OS you are using and what browser you have
     ![img.png](resources/useragent.png)
-- ---
 - #### /logout
   - logout and redirect to /index
       ![img.png](resources/index2.png)
