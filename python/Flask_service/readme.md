@@ -33,11 +33,11 @@ ___
 - ---
 ## <a name="How_to_run"></a> How to run
 - 3 ways:
-  - [Create docker image locally](#Create docker image locally)
-  - [Download from Docker Hub](#Download from Docker Hub)
-  - [Run using k8s](#Run using k8s)
+  - [Create docker image locally](#Create_docker_image_locally)
+  - [Download from Docker Hub](#Download_from_Docker_Hub)
+  - [Run using k8s](#Run_using_k8s)
 ___
-### Create docker image locally
+### <a name="Create_docker_image_locally"></a> Create docker image locally
 Clone this project using the command:
 ```
 git clone https://github.com/kvtim/training.git
@@ -57,7 +57,9 @@ Run container based on this image:
 docker run -it -d -p 5000:5000 --env-file ./config/.env_list --name service --rm flask_service  
 ```
 ![img_1.png](resources/img_1.png)
+
 You can find this service on [https://localhost:5000](https://localhost:5000/) or [https://127.0.0.1:5000](https://127.0.0.1:5000/)
+
 ![img_2.png](resources/img_2.png)
 ![img_3.png](resources/img_3.png)
 To stop container run this command:
@@ -67,14 +69,16 @@ docker stop service
 ![img_4.png](resources/img_4.png)
 
 ---
-### Download from Docker Hub
+### <a name="Download_from_Docker_Hub"></a>  Download from Docker Hub
 Run this command in your terminal:
 ```
 docker run -it -d -p 5000:5000 --env-file ./config/.env_list --name service --rm kvtim/flask_service  
 ```
 Docker will download the image and run the container
 ![img_5.png](resources/img_5.png)
+
 You can find this service on [https://localhost:5000](https://localhost:5000/) or [https://127.0.0.1:5000](https://127.0.0.1:5000/)
+
 ![img_7.png](resources/img_7.png)
 ![img_8.png](resources/img_8.png)
 To stop container run this command:
@@ -84,7 +88,7 @@ docker stop service
 ![img_6.png](resources/img_6.png)
 
 ---
-### Run using k8s
+### <a name="Run_using_k8s"></a> Run using k8s
 Clone this project using the command:
 ```
 git clone https://github.com/kvtim/training.git
@@ -118,7 +122,9 @@ Forward port:
 kubectl port-forward {pod NAME} 5000:5000
 ```
 ![img_14.png](resources/img_14.png)
+
 You can find this service on [https://localhost:5000](https://localhost:5000/) or [https://127.0.0.1:5000](https://127.0.0.1:5000/)
+
 ![img_15.png](resources/img_15.png)
 ![img_16.png](resources/img_16.png)
 Press ^C to exit:
