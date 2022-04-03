@@ -1,8 +1,8 @@
 # Flask service
-- [About service](## About this service)
-- [How to run](## How to run)
+- [About service](#About this service)
+- [How to run](#How to run)
 ___
-## About this service
+## <a name="About this service"></a> About this service
 - #### /index -Start page with links to other endpoint services
     ![index.png](resources/index.png)
     ![img.png](resources/index2.png)
@@ -31,7 +31,7 @@ ___
   - logout and redirect to /index
       ![img.png](resources/index2.png)
 - ---
-## How to run
+## <a name="How to run"></a> How to run
 - 3 ways:
   - [Create docker image locally](#Create docker image locally)
   - [Download from Docker Hub](#Download from Docker Hub)
