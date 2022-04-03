@@ -211,4 +211,4 @@ def get_weather_data(city):
 
 
 if __name__ == "__main__":
-    app.run(ssl_context='adhoc', debug=True)
+    app.run(ssl_context='adhoc', host='0.0.0.0', debug=True)
