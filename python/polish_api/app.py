@@ -1,8 +1,22 @@
 import json
 from flask import Flask, jsonify
+from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.yaml'
+
+SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': 'polish api'
+    }
+)
+
+app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
 def get_data(file_name: str):
@@ -33,7 +47,6 @@ def get_visa_canters_and_consulates():
 @app.route("/api/all_data")
 def get_all_data():
     return get_data('full_info.json')
-
 
 
 if __name__ == "__main__":
