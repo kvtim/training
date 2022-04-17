@@ -20,7 +20,7 @@ app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
 def get_data(file_name: str):
-    with open(file_name, 'r', encoding='utf8') as rf:
+    with open('data/' + file_name, 'r', encoding='utf8') as rf:
         return jsonify(json.load(rf))
 
 
