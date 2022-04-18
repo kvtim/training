@@ -1,5 +1,7 @@
 import json
-from flask import Flask, jsonify
+
+import flask
+from flask import Flask, jsonify, make_response
 from flask_swagger_ui import get_swaggerui_blueprint
 
 app = Flask(__name__)
@@ -20,8 +22,16 @@ app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
 def get_data(file_name: str):
-    with open('data/' + file_name, 'r', encoding='utf8') as rf:
-        return jsonify(json.load(rf))
+    try:
+        with open('data/' + file_name, 'r', encoding='utf8') as rf:
+            return jsonify(json.load(rf))
+    except FileNotFoundError:
+        return make_response(
+            jsonify(
+                {"error": "data not found"}
+            ),
+            404
+        )
 
 
 @app.route("/api/consulates")
@@ -30,7 +40,7 @@ def get_consulates():
 
 
 @app.route("/api/vc")
-def get_visa_canters():
+def get_visa_centers():
     return get_data('visa_centers_info.json')
 
 
@@ -40,7 +50,7 @@ def get_news():
 
 
 @app.route("/api/vc_and_consulates")
-def get_visa_canters_and_consulates():
+def get_visa_centers_and_consulates():
     return get_data('visa_centers_and_consulates_info.json')
 
 
