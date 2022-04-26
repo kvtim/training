@@ -1,1 +1,1 @@
-# Artem Kozlovski
+# Some training tasks
