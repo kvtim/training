@@ -47,7 +47,7 @@ docker build -t flask_service .
 ![img.png](resources/img.png)
 Run container based on this image:
 ```
-docker run -it -d -p 5000:5000 --env-file ./config/.env_list --name service --rm flask_service  
+docker run -it -d -p 5000:5000 --rm --name service flask_service
 ```
 ![img_1.png](resources/img_1.png)
 
@@ -65,7 +65,7 @@ docker stop service
 ### <a name="Download_from_Docker_Hub"></a>  Download from Docker Hub
 Run this command in your terminal:
 ```
-docker run -it -d -p 5000:5000 --env-file ./config/.env_list --name service --rm kvtim/flask_service  
+docker run -it -d -p 5000:5000 --name service --rm kvtim/flask_service  
 ```
 Docker will download the image and run the container
 ![img_5.png](resources/img_5.png)
