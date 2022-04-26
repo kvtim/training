@@ -1,0 +1,7 @@
+CREATE PROCEDURE to_city_name_without_cursor()
+LANGUAGE SQL
+BEGIN
+  INSERT INTO CITY_NAMES
+  SELECT CITY, (COALESCE(NAME1, '') || COALESCE((',' || NAME2), '') || COALESCE((',' || NAME3), ''))
+  FROM CITY_N1N2N3;
+END @
