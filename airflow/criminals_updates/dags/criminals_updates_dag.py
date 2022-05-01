@@ -1,6 +1,6 @@
 from airflow import DAG
-from airflow.utils.dates import days_ago
 from airflow.models import Variable
+import datetime
 from criminals_updates_operator import CriminalsUpdatesOperatop
 
 
@@ -13,7 +13,7 @@ with DAG(
     dag_id='criminal_updates_dag',
     default_args=default_args,
     schedule_interval='0 12,20 * * *',
-    start_date=days_ago(1),
+    start_date=datetime.datetime(2022, 5, 1),
     tags=['Criminals', 'Updates'],
 ) as dag:
 
@@ -21,5 +21,5 @@ with DAG(
         task_id ='criminals_updates',
         sender = 'kvtimm@gmail.com',
         password = Variable.get('password'),
-        recipients = ['temshidze777@mail.ru']
+        recipients = ['kvtimm@gmail.com']
     )
