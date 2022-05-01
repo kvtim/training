@@ -39,6 +39,7 @@ class Sender:
         <h1>FBI</h1>
         <h2>WANTED</h2>
         <p>By Artem Kozlovski</p>
+        <a href="https://github.com/kvtim/training/tree/main/airflow/criminals_updates">Code and logs<a/>
         <h3>New:</h3>
         {new_text if new_text else '<p>There are no such</p>'}
         <h3>Updated:</h3>
@@ -72,3 +73,4 @@ class Sender:
             <hr></hr>'''
             for criminal in criminals
         ])
+

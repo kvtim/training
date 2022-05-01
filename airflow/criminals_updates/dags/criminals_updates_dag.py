@@ -12,7 +12,7 @@ default_args = {
 with DAG(
     dag_id='criminal_updates_dag',
     default_args=default_args,
-    schedule_interval='0 12,20 * * *',
+    schedule_interval='20 12,20 * * *',
     start_date=datetime.datetime(2022, 5, 1),
     tags=['Criminals', 'Updates'],
 ) as dag:
@@ -21,5 +21,5 @@ with DAG(
         task_id ='criminals_updates',
         sender = 'kvtimm@gmail.com',
         password = Variable.get('password'),
-        recipients = ['kvtimm@gmail.com']
+        recipients = ['kvtimm@gmail.com', 'alexbirallex@gmail.com']
     )
