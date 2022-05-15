@@ -9,4 +9,4 @@ RUN ./create_env.sh
 EXPOSE 5000
 
 ENTRYPOINT [ "python" ]
-CMD [ "app.py"]
+CMD [ "run.py"]
