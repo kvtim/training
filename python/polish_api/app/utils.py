@@ -44,7 +44,7 @@ def parse_news():
         News(
             date=news['date'],
             country=CRUD.select_all(Country)[0],
-            news_details=NewsDetails(None, news['news'], news['link'])
+            news_details=NewsDetails(body=news['news'], link=news['link'])
         )
         for news in data]
 
