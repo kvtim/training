@@ -18,10 +18,10 @@ class ConsulatesScraper:
     def get_data(self) -> List[dict]:
         consulates = self.get_list_data()
         return [{
-            'address': consulate[1].split(':', maxsplit=1)[1].strip(),
-            'phone': consulate[2].split(':', maxsplit=1)[1].replace(' ', ' ').strip(),
-            'working hours': consulate[3].split(':', maxsplit=1)[1].strip(),
+            'address': consulate[1].split(':', maxsplit=1)[1].strip().rstrip('.'),
+            'phone': consulate[2].split(':', maxsplit=1)[1].replace(' ', ' ').strip().rstrip('.'),
+            'working hours': consulate[3].split(':', maxsplit=1)[1].strip().rstrip('.'),
             'working hours for get a visa':
-                consulate[4].split(':', maxsplit=1)[1].strip(),
-            'working hours for delivery of docs': consulate[5].split(':', maxsplit=1)[1].strip()
+                consulate[4].split(':', maxsplit=1)[1].strip().rstrip('.'),
+            'working hours for delivery of docs': consulate[5].split(':', maxsplit=1)[1].strip().rstrip('.')
         } for consulate in consulates]
