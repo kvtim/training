@@ -1,0 +1,48 @@
+{
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "range": {
+                        "rating": {
+                            "gte": 3
+                        }
+                    }
+                },
+                {
+                    "match": {
+                        "tags": "elastic api tesla data"
+                    }
+                }
+            ],
+            "filter": [
+                {
+                    "range": {
+                        "number_of_readers": {
+                            "gte": 8500
+                        }
+                    }
+                },
+                {
+                    "range": {
+                        "date": {
+                            "gte": "now-10M"
+                        }
+                    }
+                }
+            ],
+            "should": [
+                {
+                    "match": {
+                        "id": 6
+                    }
+                },
+                {
+                    "match": {
+                        "author.email": "author11@gmail.com"
+                    }
+                }
+            ]
+        }
+    }
+}

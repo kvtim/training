@@ -1,0 +1,52 @@
+{
+    "mappings": {
+        "dynamic_templates": [
+            {
+                "strings_as_keyword": {
+                    "match_mapping_type": "string",
+                    "mapping": {
+                        "type": "keyword"
+                    }
+                }
+            }
+        ],
+        "properties": {
+            "id": {
+                "type": "integer",
+                "doc_values": false
+            },
+            "author": {
+                "properties": {
+                    "name": {
+                        "type": "text"
+                    },
+                    "email": {
+                        "type": "keyword"
+                    },
+                    "personal_information": {
+                        "type": "text",
+                        "index": "false"
+                    }
+                }
+            },
+            "title": {
+                "type": "text"
+            },
+            "content": {
+                "type": "text"
+            },
+            "rating": {
+                "type": "float"
+            },
+            "date": {
+                "type": "date"
+            },
+            "tags": {
+                "type": "text"
+            },
+            "number_of_readers": {
+                "type": "integer"
+            }
+        }
+    }
+}

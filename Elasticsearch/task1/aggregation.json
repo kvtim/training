@@ -1,0 +1,20 @@
+{
+    "size": 0,
+    "aggs": {
+        "rating_aggs": {
+            "terms": {
+                "field": "rating",
+                "order": {
+                    "number_of_readers_avg": "desc"
+                }
+            },
+            "aggs": {
+                "number_of_readers_avg": {
+                    "avg": {
+                        "field": "number_of_readers"
+                    }
+                }
+            }
+        }
+    }
+}

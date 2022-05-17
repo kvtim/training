@@ -1,0 +1,31 @@
+PUT /cluster_index
+{
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas": 3
+  }
+}
+
+PUT /cluster_index/_doc/1
+{
+  "region":"europe-west4-a",
+  "name":"Instance #1",
+  "node":"data_hot data_content master coordinating ingest",
+  "master": false
+}
+
+PUT /cluster_index/_doc/2
+{
+  "region":"europe-west4-a",
+  "name":"Tiebreaker #2",
+  "node":"master eligible",
+  "master": true
+}
+
+PUT /cluster_index/_doc/3
+{
+  "region":"europe-west4-c",
+  "name":"Instance #0",
+  "node":"data_hot data_content master eligible coordinating ingest",
+  "master" :false
+}
