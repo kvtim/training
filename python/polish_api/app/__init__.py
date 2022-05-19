@@ -4,7 +4,7 @@ import config
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config.from_object('config.DevelopmentConfig')
+app.config.from_object('config.ProductionConfig')
 
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
     app.config['SWAGGER_URL'],
@@ -17,5 +17,9 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=app.config['SWAGGER_URL'])
 
 db = SQLAlchemy(app)
+
+from . import utils
+
+utils.initialize_db()
 
 from . import routes

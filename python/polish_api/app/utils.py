@@ -19,7 +19,7 @@ def parse_consulates():
             phone_number_1=consulate['phone'].split(',')[0],
             phone_number_2=consulate['phone'].split(',')[1] if
             len(consulate['phone'].split(',')) > 1 else None,
-            country=CRUD.select_all(Country)[0]
+            country=CRUD.select_by_name(Country, 'Poland')
         )
         for consulate in data]
 
@@ -33,7 +33,7 @@ def parse_visa_centers():
             apply_working_hours_1=center['opening_hours'][0]['day'] + ', ' + center['opening_hours'][0]['hours'],
             issue_working_hours_2=center['opening_hours'][1]['day'] + ', ' + center['opening_hours'][1]['hours'],
             phone_number=None,
-            country=CRUD.select_all(Country)[0]
+            country=CRUD.select_by_name(Country, 'Poland')
         )
         for center in data]
 
@@ -43,8 +43,12 @@ def parse_news():
     return [
         News(
             date=news['date'],
-            country=CRUD.select_all(Country)[0],
-            news_details=NewsDetails(body=news['news'], link=news['link'])
+            country=CRUD.select_by_name(Country, 'Poland'),
+            news_details=NewsDetails(
+                title=news['news'][:50],
+                body=news['news'],
+                link=news['link']
+            )
         )
         for news in data]
 
@@ -73,3 +77,30 @@ def initialize_db():
     create_consulates()
     create_vise_centers()
     create_news()
+
+
+def find_consulates_updates():
+    new_items = parse_consulates()
+    old_items = CRUD.select_all(Consulate)
+
+    created = [new for new in new_items if new.address not in [
+        old.address for old in old_items]]
+
+    for new in created:
+        CRUD.insert(new)
+
+    for old in old_items:
+        exists = False
+        for new in new_items:
+            if old.address == new.address:
+                exists = True
+                if old == new:
+                    CRUD.update(Consulate, old.id,
+                                address=new.address,
+                                email=new.email,
+                                working_hours=new.working_hours,
+                                phone_number_1=new.phone_number_1,
+                                phone_number_2=new.phone_number_2)
+
+        if exists is False:
+            CRUD.delete(old)

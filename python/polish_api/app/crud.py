@@ -5,6 +5,10 @@ from app import db
 
 class CRUD:
     @staticmethod
+    def select_by_name(item_class, name):
+        return item_class.query.filter_by(name=name).first()
+
+    @staticmethod
     def select_all(item_class):
         return item_class.query.all()
 
