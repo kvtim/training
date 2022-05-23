@@ -29,11 +29,11 @@ class Consulate(db.Model):
                f' country id: {self.country.id}>'
 
     def __eq__(self, other):
-        if isinstance(other, Consulate):
-            return (self.address == other.address and self.email == other.email and
-                    self.working_hours == other.working_hours and
-                    self.phone_number_1 == other.phone_number_1 and
-                    self.phone_number_2 == other.phone_number_2)
+        if isinstance(other, dict):
+            return (self.address == other['address'] and self.email == other['email'] and
+                    self.working_hours == other['working_hours'] and
+                    self.phone_number_1 == other['phone_number_1'] and
+                    self.phone_number_2 == other['phone_number_2'])
         return NotImplemented
 
 
@@ -56,11 +56,11 @@ class VisaApplicationCenter(db.Model):
                f' country id: {self.country.id}>'
 
     def __eq__(self, other):
-        if isinstance(other, VisaApplicationCenter):
-            return (self.address == other.address and self.email == other.email and
-                    self.apply_working_hours_1 == other.apply_working_hours_1 and
-                    self.issue_working_hours_2 == other.issue_working_hours_2 and
-                    self.phone_number == other.phone_number)
+        if isinstance(other, dict):
+            return (self.address == other['address'] and self.email == other['email'] and
+                    self.apply_working_hours_1 == other['apply_working_hours_1'] and
+                    self.issue_working_hours_2 == other['issue_working_hours_2'] and
+                    self.phone_number == other['phone_number'])
         return NotImplemented
 
 
@@ -72,7 +72,7 @@ class NewsDetails(db.Model):
     link = db.Column(db.String(100))
 
     def __repr__(self):
-        return f'<News details id: {self.id} title: {self.title}, dody: {self.body},' \
+        return f'<News details id: {self.id} title: {self.title}, body: {self.body},' \
                f' link: {self.link}>'
 
     def __eq__(self, other):
