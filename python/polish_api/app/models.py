@@ -76,9 +76,9 @@ class NewsDetails(db.Model):
                f' link: {self.link}>'
 
     def __eq__(self, other):
-        if isinstance(other, NewsDetails):
-            return (self.title == other.title and self.body == other.body and
-                    self.link == other.link)
+        if isinstance(other, dict):
+            return (self.title == other['title'] and self.body == other['body'] and
+                    self.link == other['link'])
         return NotImplemented
 
 
@@ -98,6 +98,6 @@ class News(db.Model):
                f' news_details_id: {self.news_details_id}>'
 
     def __eq__(self, other):
-        if isinstance(other, News):
-            return self.title == other.title and self.news_details == other.news_details
+        if isinstance(other, dict):
+            return self.date == other['date'] and self.news_details == other['news_details']
         return NotImplemented

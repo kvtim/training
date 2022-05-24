@@ -41,15 +41,15 @@ def parse_visa_centers():
 def parse_news():
     data = get_data('news_info.json')
     return [
-        News(
-            date=news['date'],
-            country=CRUD.select_by_name(Country, 'Poland'),
-            news_details=NewsDetails(
-                title=news['news'][:50],
-                body=news['news'],
-                link=news['link']
-            )
-        )
+        {
+            'date': news['date'],
+            'country': 'Poland',
+            'news_details': {
+                'title': news['news'][:50],
+                'body': news['news'],
+                'link': news['link']
+            }
+        }
         for news in data]
 
 
@@ -127,7 +127,37 @@ def create_vise_centers():
 
 
 def create_news():
-    news = parse_news()
+    new_news = parse_news()
+
+    old_news = CRUD.select_all(News)
+
+    for old in old_news:
+        exists = False
+        for new in new_news:
+            if old.news_details.link == new['news_details']['link']:
+                exists = True
+                if old != new:
+                    CRUD.update(News, old.id,
+                                date=new['date'])
+                    CRUD.update(NewsDetails, old.news_details.id,
+                                title=new['news_details']['title'],
+                                body=new['news_details']['title'],
+                                link=new['news_details']['link'])
+        if exists is False:
+            CRUD.delete(old)
+
+    news = [
+        News(
+            date=new['date'],
+            country=CRUD.select_by_name(Country, new['country']),
+            news_details=NewsDetails(
+                title=new['news_details']['title'],
+                body=new['news_details']['body'],
+                link=new['news_details']['link']
+            )
+        ) for new in new_news if new['news_details']['link'] not in [
+            old.news_details.link for old in old_news]]
+
     CRUD.insert_list(news)
 
 
@@ -135,4 +165,4 @@ def initialize_db():
     create_country()
     create_consulates()
     create_vise_centers()
-    # create_news()
+    create_news()
