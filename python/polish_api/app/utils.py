@@ -166,15 +166,13 @@ def add_consulates_to_elasticsearch():
     consulates = CRUD.select_all(Consulate)
     for consulate in consulates:
         ES_CRUD.add_to_index('consulate', {
-            {
-                'id': consulate.id,
-                'address': consulate.address,
-                'email': consulate.email,
-                'working_hours': consulate.working_hours,
-                'phone_number_1': consulate.phone_number_1,
-                'phone_number_2': consulate.phone_number_2,
-                'country': consulate.country.name
-            }
+            'id': consulate.id,
+            'address': consulate.address,
+            'email': consulate.email,
+            'working_hours': consulate.working_hours,
+            'phone_number_1': consulate.phone_number_1,
+            'phone_number_2': consulate.phone_number_2,
+            'country': consulate.country.name
         })
 
 
@@ -182,15 +180,13 @@ def add_visa_centers_to_elasticsearch():
     visa_centers = CRUD.select_all(VisaApplicationCenter)
     for center in visa_centers:
         ES_CRUD.add_to_index('visaac', {
-            {
-                'id': center.id,
-                'address': center.address,
-                'email': center.email,
-                'apply_working_hours_1': center.apply_working_hours_1,
-                'issue_working_hours_2': center.issue_working_hours_2,
-                'phone_number': center.phone_number,
-                'country': center.country.name
-            }
+            'id': center.id,
+            'address': center.address,
+            'email': center.email,
+            'apply_working_hours_1': center.apply_working_hours_1,
+            'issue_working_hours_2': center.issue_working_hours_2,
+            'phone_number': center.phone_number,
+            'country': center.country.name
         })
 
 
@@ -198,13 +194,11 @@ def add_news_to_elasticsearch():
     all_news = CRUD.select_all(News)
     for news in all_news:
         ES_CRUD.add_to_index('news', {
-            {
-                'id': news.id,
-                'date': news.date,
-                'title': news.news_details.title,
-                'body': news.news_details.body,
-                'link': news.news_details.link
-            }
+            'id': news.id,
+            'date': news.date,
+            'title': news.news_details.title,
+            'body': news.news_details.body,
+            'link': news.news_details.link
         })
 
 

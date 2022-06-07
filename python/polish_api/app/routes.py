@@ -6,7 +6,7 @@ from .models import Consulate, VisaApplicationCenter, News
 
 @app.route("/api/consulates")
 def get_consulates():
-    consulates = ES_CRUD.query_index('consulate', '')
+    consulates = ES_CRUD.get_all('consulate')
 
     results = {'consulates': [
         {
@@ -21,9 +21,58 @@ def get_consulates():
     return results
 
 
+@app.route("/api/consulate/<int:id>")
+def get_consulate_by_id(id):
+    consulate = ES_CRUD.get_by_id('consulate', id)
+
+    result = {
+        'country': consulate['country'],
+        'address': consulate['address'],
+        'email': consulate['email'],
+        'working_hours': consulate['working_hours'],
+        'phone_number_1': consulate['phone_number_1'],
+        'phone_number_2': consulate['phone_number_2']
+    }
+    return result
+
+
+@app.route("/api/consulates/<city>")
+def get_consulates_by_city(city):
+    consulates = ES_CRUD.get_by_city('consulate', city)
+
+    results = {f'consulates from {city}': [
+        {
+            'country': consulate['country'],
+            'address': consulate['address'],
+            'email': consulate['email'],
+            'working_hours': consulate['working_hours'],
+            'phone_number_1': consulate['phone_number_1'],
+            'phone_number_2': consulate['phone_number_2']
+        } for consulate in consulates]
+    }
+    return results
+
+
 @app.route("/api/vac")
 def get_visa_centers():
-    visa_centers = ES_CRUD.query_index('visaac', '')
+    visa_centers = ES_CRUD.get_all('visaac')
+
+    results = {'visa_centers': [
+        {
+            'country': visa_center['country'],
+            'address': visa_center['address'],
+            'email': visa_center['email'],
+            'apply_working_hours_1': visa_center['apply_working_hours_1'],
+            'issue_working_hours_1': visa_center['issue_working_hours_2'],
+            'phone_number': visa_center['phone_number']
+        } for visa_center in visa_centers]
+    }
+    return results
+
+
+@app.route("/api/vac/<city>")
+def get_visa_centers_by_city(city):
+    visa_centers = ES_CRUD.get_by_city('visaac', city)
 
     results = {'visa_centers': [
         {
@@ -40,7 +89,7 @@ def get_visa_centers():
 
 @app.route("/api/news")
 def get_news():
-    all_news = ES_CRUD.query_index('news', '')
+    all_news = ES_CRUD.get_all('news')
 
     results = {'news': [
         {
@@ -58,6 +107,15 @@ def get_visa_centers_and_consulates():
     results = {
         'visa centers info': get_visa_centers(),
         'consulates info': get_consulates()
+    }
+    return results
+
+
+@app.route("/api/vac_and_consulates/<city>")
+def get_visa_centers_and_consulates_by_city(city):
+    results = {
+        f'visa centers and from {city}': get_visa_centers_by_city(city),
+        f'consulates from {city}': get_consulates_by_city(city)
     }
     return results
 
