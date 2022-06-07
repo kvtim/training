@@ -12,6 +12,8 @@ class BaseConfig:
     SWAGGER_URL = '/api/docs'
     API_URL = '/static/swagger.yaml'
 
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL') or 'http://localhost:9200'
+
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True

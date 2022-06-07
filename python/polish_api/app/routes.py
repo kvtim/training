@@ -1,52 +1,54 @@
 from app import app
 from .crud import CRUD
+from .es_crud import ES_CRUD
 from .models import Consulate, VisaApplicationCenter, News
 
 
 @app.route("/api/consulates")
 def get_consulates():
-    consulates = CRUD.select_all(Consulate)
+    consulates = ES_CRUD.query_index('consulate', '')
 
     results = {'consulates': [
-        {'country': consulate.country.name,
-         'address': consulate.address,
-         'email': consulate.email,
-         'working_hours': consulate.working_hours,
-         'phone_number_1': consulate.phone_number_1,
-         'phone_number_2': consulate.phone_number_2
-         } for consulate in consulates]
+        {
+            'country': consulate['country'],
+            'address': consulate['address'],
+            'email': consulate['email'],
+            'working_hours': consulate['working_hours'],
+            'phone_number_1': consulate['phone_number_1'],
+            'phone_number_2': consulate['phone_number_2']
+        } for consulate in consulates]
     }
     return results
 
 
 @app.route("/api/vac")
 def get_visa_centers():
-    visa_centers = CRUD.select_all(VisaApplicationCenter)
+    visa_centers = ES_CRUD.query_index('visaac', '')
 
     results = {'visa_centers': [
-        {'country': visa_center.country.name,
-         'address': visa_center.address,
-         'email': visa_center.email,
-         'apply_working_hours_1': visa_center.apply_working_hours_1,
-         'issue_working_hours_1': visa_center.issue_working_hours_2,
-         'phone_number': visa_center.phone_number
-         } for visa_center in visa_centers]
+        {
+            'country': visa_center['country'],
+            'address': visa_center['address'],
+            'email': visa_center['email'],
+            'apply_working_hours_1': visa_center['apply_working_hours_1'],
+            'issue_working_hours_1': visa_center['issue_working_hours_2'],
+            'phone_number': visa_center['phone_number']
+        } for visa_center in visa_centers]
     }
     return results
 
 
 @app.route("/api/news")
 def get_news():
-    news = CRUD.select_all(News)
+    all_news = ES_CRUD.query_index('news', '')
 
     results = {'news': [
-        {'date': n.date,
-         'country': n.country.name,
-         'news_details': {
-             'title': n.news_details.title,
-             'body': n.news_details.body,
-             'link': n.news_details.link}
-         } for n in news]
+        {
+            'date': news['date'],
+            'title': news['title'],
+            'body': news['body'],
+            'link': news['link']
+        } for news in all_news]
     }
     return results
 
