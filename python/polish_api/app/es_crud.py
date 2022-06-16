@@ -9,10 +9,10 @@ class ES_CRUD:
         app.elasticsearch.index(index=index, id=item['id'], document=item)
 
     @staticmethod
-    def remove_from_index(index, id):
+    def remove_index(index):
         if not app.elasticsearch:
             return
-        app.elasticsearch.delete(index=index, id=id)
+        app.elasticsearch.delete(index=index)
 
     @staticmethod
     def get_by_id(index, id):

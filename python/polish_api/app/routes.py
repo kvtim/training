@@ -74,7 +74,7 @@ def get_visa_centers():
 def get_visa_centers_by_city(city):
     visa_centers = ES_CRUD.get_by_city('visaac', city)
 
-    results = {'visa_centers': [
+    results = {f'visa_centers from {city}': [
         {
             'country': visa_center['country'],
             'address': visa_center['address'],
@@ -114,8 +114,8 @@ def get_visa_centers_and_consulates():
 @app.route("/api/vac_and_consulates/<city>")
 def get_visa_centers_and_consulates_by_city(city):
     results = {
-        f'visa centers and from {city}': get_visa_centers_by_city(city),
-        f'consulates from {city}': get_consulates_by_city(city)
+        'visa centers': get_visa_centers_by_city(city),
+        'consulates': get_consulates_by_city(city)
     }
     return results
 
