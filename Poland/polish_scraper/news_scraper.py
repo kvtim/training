@@ -1,6 +1,6 @@
 import requests
 
-from polish_scraper.base_scraper import BaseScraper
+from base_scraper import BaseScraper
 from typing import List
 
 

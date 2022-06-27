@@ -1,7 +1,6 @@
 from elasticsearch import Elasticsearch
 from flask import Flask
 from flask_swagger_ui import get_swaggerui_blueprint
-from polish_scraper.polish_scraper import PolishScraper
 import config
 
 app = Flask(__name__)
@@ -19,11 +18,5 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=app.config['SWAGGER_URL'])
-
-scraper = PolishScraper()
-
-from . import utils
-
-utils.initialize_db()
 
 from . import routes

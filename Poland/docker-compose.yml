@@ -18,12 +18,27 @@ services:
       timeout: 10s
       retries: 5
 
+  polish_scraper:
+    image: polish_scraper
+    container_name: polish_scraper
+    build:
+      context: polish_scraper
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    ports:
+      - 8000:8000
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
   polish_api:
     image: polish_api
     container_name: polish_api
     # restart: "on-failure"
     build:
-      context: .
+      context: polish_api
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - 5000:5000
     depends_on:

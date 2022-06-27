@@ -1,6 +1,6 @@
 import requests
 
-from polish_scraper.base_scraper import BaseScraper
+from base_scraper import BaseScraper
 from typing import List
 
 
@@ -31,6 +31,7 @@ class ViseCentersScraper(BaseScraper):
         addresses = self.__get_addresses(vacaddresses)
 
         centers_data = [{
+            'city': city,
             'address': address,
             'email': None,
             'apply_working_hours_1': hours[0]['day'] + ', ' + hours[0]['hours'],
