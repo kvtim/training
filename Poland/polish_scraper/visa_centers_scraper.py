@@ -33,10 +33,10 @@ class ViseCentersScraper(BaseScraper):
         centers_data = [{
             'city': city,
             'address': address,
-            'email': None,
+            'email': '',
             'apply_working_hours_1': hours[0]['day'] + ', ' + hours[0]['hours'],
             'issue_working_hours_2': hours[1]['day'] + ', ' + hours[1]['hours'],
-            'phone_number': None,
+            'phone_number': '',
             'country': 'Poland'
         } for city, hours, address in zip(cities, opening_hours, addresses)]
 

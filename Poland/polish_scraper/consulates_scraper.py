@@ -32,11 +32,9 @@ class ConsulatesScraper:
         return [
             {
                 'address': consulate['address'],
-                'email': None,
+                'email': '',
                 'working_hours': consulate['working hours'],
-                'phone_number_1': consulate['phone'].split(',')[0],
-                'phone_number_2': consulate['phone'].split(',')[1] if
-                len(consulate['phone'].split(',')) > 1 else None,
+                'phone': consulate['phone'].split(',')[0],
                 'country': 'Poland'
             }
             for consulate in consulates]
