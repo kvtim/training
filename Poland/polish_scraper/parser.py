@@ -1,16 +1,12 @@
 from pyspark.sql import SparkSession
 import re
+from datetime import datetime as dt
 from pyspark import Row
 from pyspark.sql import functions as F
-from pyspark.sql.types import dt
+from pyspark.sql import types as T
 
 appName = 'formatter'
 master = 'local'
-
-spark = SparkSession.builder \
-    .master(master) \
-    .appName(appName) \
-    .getOrCreate()
 
 
 def df_to_dict(df):
@@ -18,6 +14,11 @@ def df_to_dict(df):
 
 
 def parse_consulates(consulates):
+    spark = SparkSession.builder \
+        .master(master) \
+        .appName(appName) \
+        .getOrCreate()
+
     df = spark.createDataFrame([Row(**i) for i in consulates])
 
     df = df.withColumn('address', F.regexp_replace(df.address, '\d+, г. ', ''))
@@ -30,6 +31,10 @@ def parse_consulates(consulates):
 
 
 def parse_vacs(visa_centers):
+    spark = SparkSession.builder \
+        .master(master) \
+        .appName(appName) \
+        .getOrCreate()
     df = spark.createDataFrame([Row(**i) for i in visa_centers])
 
     df = df.withColumn('address', F.udf(lambda a: format_address(a))(df.address))
@@ -39,6 +44,10 @@ def parse_vacs(visa_centers):
 
 
 def parse_news(all_news):
+    spark = SparkSession.builder \
+        .master(master) \
+        .appName(appName) \
+        .getOrCreate()
     df = spark.createDataFrame([Row(**i) for i in all_news])
 
     df = df.withColumn('link', F.regexp_replace(df['link'], r'^https?:\/\/', '')) \

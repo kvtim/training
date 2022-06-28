@@ -12,8 +12,8 @@ def get_consulates():
             'address': consulate['address'],
             'email': consulate['email'],
             'working_hours': consulate['working_hours'],
-            'phone_number_1': consulate['phone_number_1'],
-            'phone_number_2': consulate['phone_number_2']
+            'phone1': consulate['phone1'],
+            'phone2': consulate['phone2']
         } for consulate in consulates]
     }
     return results
@@ -57,6 +57,7 @@ def get_visa_centers():
 
     results = {'visa_centers': [
         {
+            'city': visa_center['city'],
             'country': visa_center['country'],
             'address': visa_center['address'],
             'email': visa_center['email'],
@@ -74,6 +75,7 @@ def get_visa_centers_by_city(city):
 
     results = {f'visa_centers from {city}': [
         {
+            'city': visa_center['city'],
             'country': visa_center['country'],
             'address': visa_center['address'],
             'email': visa_center['email'],
